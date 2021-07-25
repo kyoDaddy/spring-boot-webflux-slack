@@ -1,0 +1,26 @@
+slack:
+  webhook-url:
+    info: https://hooks.slack.com/services/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
+    warn: https://hooks.slack.com/services/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
+    error: https://hooks.slack.com/services/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
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/postgres
+    username: kyo
+    password: 1q2w3e4r
+
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 10
+
+  jpa:
+    show-sql: true
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
