@@ -1,5 +1,7 @@
 package com.demo.process.controller;
 
+import com.demo.config.prop.SlackProp;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,10 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 public class TestController {
+
+    private final SlackProp slackProp;
 
     /**
      * Mono는 0 또는 1, 없음 또는 있음 등의 둘중 하나를 제공
@@ -29,6 +34,12 @@ public class TestController {
                     return "Hello world, session id => " + session.getId();
                 });
     }
+
+    @GetMapping({"/prop"})
+    public Mono<SlackProp> propTest() {
+        return Mono.just(slackProp);
+    }
+
 
     /**
      * flux는 값을 뽑아주는 Iterator(이터레이터)
@@ -64,6 +75,8 @@ public class TestController {
                 "December"
         ));
     }
+
+
 
 
 

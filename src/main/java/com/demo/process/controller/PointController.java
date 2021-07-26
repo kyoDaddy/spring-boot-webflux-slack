@@ -2,10 +2,10 @@ package com.demo.process.controller;
 
 import com.demo.process.domain.Point;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -15,33 +15,50 @@ import java.util.UUID;
 @RequestMapping("/points")
 public class PointController {
 
-    private final Point ME = Point.builder()
-            //.poiId(UUID.randomUUID().toString())
-            .poiContent("test")
-            .poiDtm(LocalDate.now())
-            .memId(UUID.randomUUID().variant())
-            .poiType("DEFAULT")
-            .poiAction("PLUS")
-            .build();
-
 
     @GetMapping
     public Flux<Point> findAll() {
-        log.info("find all points in database...");
-        return Flux.just(
-                ME,
-                Point.builder()
-                .poiContent("test")
-                .poiDtm(LocalDate.now())
-                .memId(UUID.randomUUID().variant())
-                .poiType("DEFAULT")
-                .poiAction("PLUS")
-                .build()
-        );
+
+
+        return null;
     }
 
+    @GetMapping("/{memId}")
+    public Mono<Point> findById(@PathVariable("memId") final int memId) {
 
 
+        return null;
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Point> crate(@RequestBody final Point point) {
+
+
+        return null;
+    }
+
+    @PutMapping("/{memId}")
+    public Mono<Point> update(@PathVariable("memId") final int memId, @RequestBody final Point point) {
+
+
+        return null;
+    }
+
+    @DeleteMapping("/{memId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteById(@PathVariable("memId") final String id) {
+
+
+        return null;
+    }
+
+    @GetMapping("/me")
+    public Mono<Point> getPoint() {
+
+
+        return null;
+    }
 
 
 
