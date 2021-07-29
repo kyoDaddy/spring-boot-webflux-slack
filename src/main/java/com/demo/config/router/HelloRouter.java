@@ -12,6 +12,13 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Configuration
 public class HelloRouter {
 
+    /**
+     * helloHandler 클래스를 RouterFunctions 인터페이스에 넣어 전달..
+     * mvc 패턴으로비교하면, Controller 역할을 담당...
+     *
+     * @param helloHandler
+     * @return
+     */
     @Bean
     public RouterFunction<ServerResponse> route(HelloHandler helloHandler) {
         return RouterFunctions

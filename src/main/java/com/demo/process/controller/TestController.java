@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
@@ -16,12 +17,14 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/test")
 public class TestController {
 
     private final SlackProp slackProp;
 
     /**
-     * Mono는 0 또는 1, 없음 또는 있음 등의 둘중 하나를 제공
+     * Mono에서의 행위는 0 또는 1, 없음 또는 있음 등의 둘중 하나를 제공
+     *
      * @param exchange
      * @return
      */
@@ -42,7 +45,7 @@ public class TestController {
 
 
     /**
-     * flux는 값을 뽑아주는 Iterator(이터레이터)
+     * flux는 값을 뽑아주는 Iterator (행위는 0~n개)
      * @return
      */
     @GetMapping("/days")
