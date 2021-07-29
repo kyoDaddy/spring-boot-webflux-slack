@@ -1,4 +1,4 @@
-package com.demo.config.locale;
+package com.demo.config.base;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +16,9 @@ import java.util.Locale;
 @Configuration
 public class LocaleConfig {
 
+    /**
+     * @PostConstruct Bean이 완전히 초기화 된 후, 단 한번만 호출되는 메소드
+     */
     @PostConstruct
     public void setDefaultLocale() {
         Locale.setDefault(Locale.forLanguageTag("ko-KR"));

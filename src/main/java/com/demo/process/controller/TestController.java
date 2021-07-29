@@ -1,19 +1,21 @@
 package com.demo.process.controller;
 
 import com.demo.config.prop.SlackProp;
+import com.demo.process.dto.TimeZoneDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.sql.Time;
+import java.time.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 @Slf4j
 @RestController
@@ -86,12 +88,39 @@ public class TestController {
     }
 
     @GetMapping("/locales/default")
-    public Mono<Locale> getDefault() {
+    public Mono<Locale> getLocaleDefault() {
         return Mono.just(Locale.getDefault());
     }
 
+    @GetMapping("/time-zones")
+    public Flux<TimeZone> getAvailableTimeZones() {
+        return Flux.fromIterable(Arrays.asList(TimeZone.getAvailableIDs()))
+                .map(TimeZone::getTimeZone);
+    }
 
+    @GetMapping("/time-zones/default")
+    public Mono<TimeZone> getTimeZoneDefault() {
+        return Mono.just(TimeZone.getDefault());
+    }
 
+    @GetMapping("/time-zones/current-datetime")
+    public Mono<TimeZoneDTO> currentDateTime(@RequestParam(required = false, defaultValue = "Asia/Seoul", value = "timeZone") final String timeZone) {
+
+        log.info("========>" + timeZone);
+        TimeZone.setDefault(TimeZone.getTimeZone(timeZone));
+        log.info("change Default Time Zone => {}", TimeZone.getDefault().getID());
+
+        return Mono.just(
+                TimeZoneDTO.builder()
+                        .instant(Instant.now())
+                        .localDate(LocalDate.now())
+                        .offsetDateTime(OffsetDateTime.now())
+                        .offsetTime(OffsetTime.now())
+                        .zonedDateTime(ZonedDateTime.now())
+                        .build()
+        );
+
+    }
 
 
 }

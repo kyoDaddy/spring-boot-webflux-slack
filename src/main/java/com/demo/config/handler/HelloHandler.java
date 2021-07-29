@@ -26,7 +26,7 @@ public class HelloHandler {
         */
 
         result.put("number", 1234);
-        result.put("text", "webflux");
+        result.put("text", "hello, webflux " + LocalDateTime.now());
         mapper.subscribe( (arg)-> {
             System.out.println(arg);
         });
