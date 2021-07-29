@@ -13,6 +13,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 @Slf4j
 @RestController
@@ -77,6 +78,16 @@ public class TestController {
                 "November",
                 "December"
         ));
+    }
+
+    @GetMapping("/locales")
+    public Flux<Locale> getAvailableLocales() {
+        return Flux.fromIterable(Arrays.asList(Locale.getAvailableLocales()));
+    }
+
+    @GetMapping("/locales/default")
+    public Mono<Locale> getDefault() {
+        return Mono.just(Locale.getDefault());
     }
 
 
