@@ -8,6 +8,17 @@ slack:
 
 
 spring:
+  application:
+    name: spring-boot-webflux-slack
+  config:
+    import: classpath:daemon.yml
+  profiles:
+    include:
+      - daemon
+    group:
+      local: daemon-local
+      dev: daemon-dev
+
   datasource:
     url: jdbc:postgresql://127.0.0.1:5432/postgres
     username: kyo
@@ -26,3 +37,19 @@ spring:
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+---
+app.name: local
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/postgres
+    username: kyo
+    password: 1q2w3e4r
+
+---
+app.name: dev
+spring:
+  datasource:
+    url: jdbc:postgresql://172.17.0.2:5432/postgres
+    username: kyo
+    password: 1q2w3e4r
