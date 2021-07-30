@@ -43,11 +43,3 @@ spring:
     port: 587
     username: rlarbghrbgh@gmail.com
     password: -
-    properties:
-      mail:
-        smtp:
-          starttls:
-            enable: true
-          auth: true
-          ssl:
-            trust: smtp.gmail.com

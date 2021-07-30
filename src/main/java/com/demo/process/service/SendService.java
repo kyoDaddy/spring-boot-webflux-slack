@@ -8,10 +8,7 @@ import com.slack.api.webhook.Payload;
 import com.slack.api.webhook.WebhookResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -35,10 +32,10 @@ public class SendService {
         return Mono.fromRunnable(() -> {
             try {
                 final MimeMessage msg = javaMailSender.createMimeMessage();
+                //msg.setFrom(new InternetAddress(from));
 
                 // true = multipart message
                 final MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-                helper.setFrom("rlarbghrbgh@gmail.com");
                 helper.setTo(sendForm.getEmail());
                 helper.setSubject(sendForm.getSubject());
 
@@ -47,6 +44,7 @@ public class SendService {
                 helper.setSentDate(new Date());
 
                 javaMailSender.send(msg);
+                log.info("==========> 성공");
 
             } catch (Exception e) {
                 log.warn("sendEmail error => ", e);
@@ -72,6 +70,7 @@ public class SendService {
                                     .build();
 
                 WebhookResponse response = slack.send(webHookUrl, payload);
+                log.info("==>" + response.getMessage());
 
             } catch (Exception e) {
                 log.warn("sendSlack error => ", e);
