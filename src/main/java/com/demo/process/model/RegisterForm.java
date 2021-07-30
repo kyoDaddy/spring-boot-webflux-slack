@@ -4,7 +4,10 @@ import com.demo.process.validator.AtLeastPassword;
 import com.demo.process.validator.Email;
 import com.demo.process.validator.PasswordEqualsConfirmPassword;
 import com.demo.process.validator.PasswordNotEqualsEmail;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
@@ -12,6 +15,9 @@ import javax.validation.constraints.NotBlank;
 @Data
 @PasswordEqualsConfirmPassword
 @PasswordNotEqualsEmail
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class RegisterForm implements PasswordEqualsConfirmPassword.Model, PasswordNotEqualsEmail.Model {
 
     @NotBlank(message = "Required")
