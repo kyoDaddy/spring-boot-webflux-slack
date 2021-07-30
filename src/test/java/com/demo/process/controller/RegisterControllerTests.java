@@ -1,6 +1,5 @@
 package com.demo.process.controller;
 
-import com.demo.process.model.RegisterForm;
 import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -17,8 +16,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
-
-import java.util.HashMap;
 
 @RunWith(SpringRunner.class)
 @WebFluxTest(controllers = RegisterController.class)

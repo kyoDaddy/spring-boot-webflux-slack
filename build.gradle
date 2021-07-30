@@ -37,8 +37,14 @@ dependencies {
     implementation "io.springfox:springfox-swagger-ui:3.0.0"
     implementation "io.springfox:springfox-spring-webflux:3.0.0"
 
+    /* spring-mail */
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+
     /* slack-client : https://mvnrepository.com/artifact/com.slack.api/slack-api-client */
-    implementation group: 'com.slack.api', name: 'slack-api-client', version: '1.9.0'
+    implementation 'com.slack.api:slack-api-client:1.9.0'
+    implementation 'com.slack.api:slack-app-backend:1.9.0'
+    implementation 'com.slack.api:slack-api-model:1.9.0'
 
     /* okhttp : https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp */
     implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '5.0.0-alpha.2'

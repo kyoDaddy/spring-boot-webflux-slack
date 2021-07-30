@@ -2,9 +2,9 @@ slack:
   webhook-url:
     manager: rlarbghrbgh@gmail.com
     project-demo:
-      info: https://hooks.slack.com/services/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
-      warn: https://hooks.slack.com/services/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
-      error: https://hooks.slack.com/services/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
+      info: https://hooks.slack.com/services/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
+      warn: https://hooks.slack.com/services/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
+      error: https://hooks.slack.com/services/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
 
 
 spring:
@@ -37,3 +37,17 @@ spring:
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: rlarbghrbgh@gmail.com
+    password: -
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth: true
+          ssl:
+            trust: smtp.gmail.com
