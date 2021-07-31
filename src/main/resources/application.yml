@@ -43,3 +43,7 @@ spring:
     port: 587
     username: rlarbghrbgh@gmail.com
     password: -
+
+  jwt:
+    secret-key: kyo
+    expires-minutes: 600 # 10hr

@@ -1,5 +1,6 @@
 package com.demo.config.base;
 
+import io.swagger.v3.oas.models.OpenAPI;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -79,18 +80,21 @@ public class SwaggerConfig {
 
 
     private SecurityScheme securityScheme() {
-        return new ApiKey(SECURITY_KEY_NAME, "Authorization", "header");
+
+        return new ApiKey("Authorization", "Authorization", "header");
     }
 
     private SecurityContext securityContext() {
         return SecurityContext.builder()
                 .securityReferences(defaultAuth())
-                .forPaths(path -> !(path.startsWith("/auth/") || path.startsWith("/public/")))
+                .operationSelector(oc -> !(oc.requestMappingPattern().startsWith("/auth") || oc.requestMappingPattern().startsWith("/public/"))  )
+                // oc -> oc.requestMappingPattern().matches("path_regex")
+                // deprecated .forPaths(path -> !(path.startsWith("/auth/") || path.startsWith("/public/")))
                 .build();
     }
 
     private List<SecurityReference> defaultAuth() {
-        return singletonList(new SecurityReference(SECURITY_KEY_NAME, new AuthorizationScope[]{
+        return singletonList(new SecurityReference("Authorization", new AuthorizationScope[]{
                 new AuthorizationScope("global", "accessEverything")
         }));
     }
