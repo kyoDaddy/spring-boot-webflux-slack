@@ -12,7 +12,10 @@ import com.demo.process.user.domain.User;
 import com.demo.process.user.model.UserResponse;
 import com.demo.process.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import reactor.core.publisher.Mono;
@@ -22,6 +25,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LoginServiceImpl implements LoginService {
@@ -34,6 +38,8 @@ public class LoginServiceImpl implements LoginService {
 
     private final UserRepository userRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public Mono<LoginResponse> login(LoginRequest request) {
 
@@ -41,8 +47,8 @@ public class LoginServiceImpl implements LoginService {
         if(!user.isPresent()) {
             return Mono.error(new UnauthorizedException(HttpStatus.UNAUTHORIZED, "등록된 회원이 없습니다."));
         }
-        else if(!user.get().getPassword().equals(request.getPassword())) {
-            return Mono.error(new UnauthorizedException(HttpStatus.UNAUTHORIZED, "비밀번호가 유효하지 않습니다."));
+        else if(!passwordEncoder.matches(request.getPassword(), user.get().getPassword())) {
+            return Mono.error(new UnauthorizedException(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지 않습니다."));
         }
 
         final DefaultUserDetails userDetails = DefaultUserDetails.builder()
