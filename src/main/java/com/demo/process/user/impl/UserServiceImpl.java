@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
         log.info("findAll");
         return Mono.fromCallable(() -> {
             return userRepository.findAll();
-        });
+        }).log();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
         log.info("findById");
         return Mono.fromCallable(() -> {
             return userRepository.findById(id).get();
-        });
+        }).log();
     }
 
     @Transactional
@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
                             .email(user.getEmail())
                             .build()
             );
-        });
+        }).log();
         //return Mono.just(userRepository.save(user).get());
     }
 
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
             return userRepository.save(
                         info.get()
             );
-        });
+        }).log();
 
     }
 

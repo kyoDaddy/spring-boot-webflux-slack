@@ -58,7 +58,7 @@ public class LoginServiceImpl implements LoginService {
 
         final Map<String, Object> claims = defaultUserDetailsJwtClaimsConverter.convert(userDetails);
 
-        return authTokenService.sign(claims)
+        return authTokenService.sign(claims).log()
                 .map(token -> {
                     return LoginResponse.builder()
                             .expiresIn(jwtProp.getExpiresMinutes() * 60L)
