@@ -1,0 +1,13 @@
+### Post Auth Login
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email" : "rlarbghrbgh@gmail.com",
+  "password" : "test!1234"
+}
+
+###
+
+
+

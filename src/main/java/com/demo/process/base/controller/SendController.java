@@ -1,7 +1,7 @@
 package com.demo.process.base.controller;
 
-import com.demo.process.base.model.SendEmailForm;
-import com.demo.process.base.SendService;
+import com.demo.process.base.model.SendEmailRequest;
+import com.demo.process.base.service.SendService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +16,10 @@ public class SendController {
     private final SendService senderService;
 
     @PostMapping("/email")
-    public Mono<Void> sendMail(@RequestBody SendEmailForm req) {
+    public Mono<Void> sendMail(@RequestBody SendEmailRequest req) {
         log.info("email => {}", req.getEmail());
         return senderService.sendMail(
-                SendEmailForm.builder()
+                SendEmailRequest.builder()
                         .email(req.getEmail())
                         .subject(req.getSubject())
                         .body(req.getBody())

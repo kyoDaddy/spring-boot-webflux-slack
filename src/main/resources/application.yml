@@ -1,3 +1,32 @@
+spring:
+  application:
+    name: spring-boot-webflux-slack
+  banner:
+    charset: UTF-8
+    location: classpath:/banner.txt
+  config:
+    import: classpath:daemon.yml
+  profiles:
+    include:
+      - daemon
+    group:
+      local: local
+      dev: dev
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: rlarbghrbgh@gmail.com
+    password: woduf8948
+  jwt:
+    secret-key: kyo
+    expires-minutes: 600 # 10hr
+
+logging:
+  level:
+    root: INFO
+    com:
+      demo: INFO
+
 slack:
   webhook-url:
     manager: rlarbghrbgh@gmail.com
@@ -5,45 +34,3 @@ slack:
       info: https://hooks.slack.com/services/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
       warn: https://hooks.slack.com/services/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
       error: https://hooks.slack.com/services/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
-
-
-spring:
-  application:
-    name: spring-boot-webflux-slack
-  config:
-    import: classpath:daemon.yml
-  profiles:
-    include:
-      - daemon
-    group:
-      local: daemon-local
-      dev: daemon-dev
-
-  datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/postgres
-    username: kyo
-    password: 1q2w3e4r
-
-    hikari:
-      connection-timeout: 20000
-      maximum-pool-size: 10
-
-  jpa:
-    show-sql: true
-    database: POSTGRESQL
-    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
-    hibernate:
-      ddl-auto: update
-      naming:
-        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: rlarbghrbgh@gmail.com
-    password: -
-
-  jwt:
-    secret-key: kyo
-    expires-minutes: 600 # 10hr

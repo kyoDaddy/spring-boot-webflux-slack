@@ -1,7 +1,7 @@
 package com.demo.config.security;
 
 import com.auth0.jwt.algorithms.Algorithm;
-import com.demo.config.prop.JwtProp;
+import com.demo.config.prop.JwtProperties;
 import com.demo.process.security.AuthTokenService;
 import com.demo.process.security.filter.AuthTokenWebFilter;
 import com.demo.process.security.handler.AuthServerAccessDeniedHandler;
@@ -28,7 +28,7 @@ import java.util.Collections;
 public class SecurityConfig {
 
     @Autowired
-    private JwtProp jwtProp;
+    private JwtProperties jwtProperties;
 
 
     private final String[] PUBLIC_ACCESS_PATHS = new String[]{
@@ -42,13 +42,16 @@ public class SecurityConfig {
         "/assets/**",
         "/public/**",
         "/auth/**",
+        "/h2-console/**",
+        "/test/**",
+        "/register",
         "/"
     };
 
     @Bean
     public AuthTokenService authTokenService() {
-        final Algorithm algorithm = Algorithm.HMAC256(jwtProp.getSecretKey());
-        return new AuthTokenServiceImpl(algorithm, jwtProp.getExpiresMinutes());
+        final Algorithm algorithm = Algorithm.HMAC256(jwtProperties.getSecretKey());
+        return new AuthTokenServiceImpl(algorithm, jwtProperties.getExpiresMinutes());
     }
 
     @Bean

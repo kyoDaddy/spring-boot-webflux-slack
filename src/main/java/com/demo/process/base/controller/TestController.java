@@ -1,7 +1,7 @@
 package com.demo.process.base.controller;
 
-import com.demo.config.prop.SlackProp;
-import com.demo.process.base.dto.TimeZoneDTO;
+import com.demo.config.prop.SlackProperties;
+import com.demo.process.base.model.TimeZoneResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -25,7 +25,7 @@ import java.util.TimeZone;
 @RequestMapping("/test")
 public class TestController {
 
-    private final SlackProp slackProp;
+    private final SlackProperties slackProperties;
 
     /**
      * Mono에서의 행위는 0 또는 1, 없음 또는 있음 등의 둘중 하나를 제공
@@ -44,8 +44,8 @@ public class TestController {
     }
 
     @GetMapping({"/prop"})
-    public Mono<SlackProp> propTest() {
-        return Mono.just(slackProp);
+    public Mono<SlackProperties> propTest() {
+        return Mono.just(slackProperties);
     }
 
 
@@ -106,14 +106,14 @@ public class TestController {
     }
 
     @GetMapping("/time-zones/current-datetime")
-    public Mono<TimeZoneDTO> currentDateTime(@RequestParam(required = false, defaultValue = "Asia/Seoul", value = "timeZone") final String timeZone) {
+    public Mono<TimeZoneResponse> currentDateTime(@RequestParam(required = false, defaultValue = "Asia/Seoul", value = "timeZone") final String timeZone) {
 
         log.info("========>" + timeZone);
         TimeZone.setDefault(TimeZone.getTimeZone(timeZone));
         log.info("change Default Time Zone => {}", TimeZone.getDefault().getID());
 
         return Mono.just(
-                TimeZoneDTO.builder()
+                TimeZoneResponse.builder()
                         .instant(Instant.now())
                         .localDate(LocalDate.now())
                         .offsetDateTime(OffsetDateTime.now())

@@ -1,0 +1,15 @@
+### Post Auth Info
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "email" : "rlarbghrbgh@gmail.com",
+  "password" : "test!1234",
+  "username" : "김규호",
+  "confirmPassword" : "test!1234"
+}
+
+###
+
+
+

@@ -1,6 +1,6 @@
 package com.demo.process.security.repository;
 
-import com.demo.process.security.model.AnonymousAuthentication;
+import com.demo.process.security.repository.model.AnonymousAuthentication;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextImpl;

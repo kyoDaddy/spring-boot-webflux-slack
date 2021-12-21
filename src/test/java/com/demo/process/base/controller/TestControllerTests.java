@@ -1,6 +1,6 @@
 package com.demo.process.base.controller;
 
-import com.demo.config.prop.SlackProp;
+import com.demo.config.prop.SlackProperties;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,7 @@ public class TestControllerTests {
                 .exchange()
                 .expectStatus().isOk()
                 .expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
-                .expectBodyList(SlackProp.class)
+                .expectBodyList(SlackProperties.class)
                 .consumeWith(result -> {
                     System.out.println(result);
                 });

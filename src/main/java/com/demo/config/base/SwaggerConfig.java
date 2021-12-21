@@ -25,6 +25,10 @@ import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toSet;
 
 
+/**
+ * swagger 3.0 부터 ui 접근 url이 바뀜
+ * http://localhost:port/swagger-ui/index.html
+ */
 @Configuration
 @Profile({"!live"})
 public class SwaggerConfig {
@@ -57,7 +61,7 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        final String title = "webflux demo api";
+        final String title = "spring-boot-webflux-slack api";
         final String description = "Example Config Spring-boot Reactive Swagger";
         final String version = "1.0";
         final String termOfServiceUrl = null;

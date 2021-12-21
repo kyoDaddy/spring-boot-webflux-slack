@@ -1,23 +1,20 @@
 package com.demo.process.login.impl;
 
 import com.demo.config.exception.UnauthorizedException;
-import com.demo.config.prop.JwtProp;
+import com.demo.config.prop.JwtProperties;
 import com.demo.process.login.LoginService;
 import com.demo.process.login.model.LoginRequest;
 import com.demo.process.login.model.LoginResponse;
 import com.demo.process.security.AuthTokenService;
 import com.demo.process.security.DefaultUserDetailsJwtClaimsConverter;
 import com.demo.process.security.impl.DefaultUserDetails;
-import com.demo.process.user.domain.User;
-import com.demo.process.user.model.UserResponse;
+import com.demo.process.user.repository.entity.User;
 import com.demo.process.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
@@ -30,7 +27,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class LoginServiceImpl implements LoginService {
 
-    private final JwtProp jwtProp;
+    private final JwtProperties jwtProperties;
 
     private final AuthTokenService authTokenService;
 
@@ -61,7 +58,7 @@ public class LoginServiceImpl implements LoginService {
         return authTokenService.sign(claims).log()
                 .map(token -> {
                     return LoginResponse.builder()
-                            .expiresIn(jwtProp.getExpiresMinutes() * 60L)
+                            .expiresIn(jwtProperties.getExpiresMinutes() * 60L)
                             .tokenType("bearer")
                             .accessToken(token)
                             .build();

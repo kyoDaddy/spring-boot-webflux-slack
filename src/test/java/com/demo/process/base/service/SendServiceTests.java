@@ -1,8 +1,7 @@
 package com.demo.process.base.service;
 
 
-import com.demo.process.base.model.SendEmailForm;
-import com.demo.process.base.SendService;
+import com.demo.process.base.model.SendEmailRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +37,7 @@ public class SendServiceTests {
     public void testSendMail() {
 
         Mono<Void> post = sendService.sendMail(
-                SendEmailForm.builder()
+                SendEmailRequest.builder()
                         .email("rlarbghrbgh@gmail.com")
                         .subject("test")
                         .body("body content")

@@ -8,13 +8,9 @@ import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWeb
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
 
 @RunWith(SpringRunner.class)
@@ -47,7 +43,7 @@ public class RegisterControllerTests {
                 });
 
     }
-
+/*
     @Test
     void testRegister1() {
 
@@ -112,6 +108,7 @@ public class RegisterControllerTests {
 
     }
 
+*/
 
 
 }

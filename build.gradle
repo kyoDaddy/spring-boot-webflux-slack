@@ -1,12 +1,49 @@
+buildscript {
+    ext {
+        springBootVersion = '2.4.11'
+        springDependencyManagement = '1.0.11.RELEASE'
+
+        javaJwtVerion = '3.18.1'
+        guavaVersion = '30.1.1-jre'
+
+        jsonSimpleVersion = '1.1.1'
+
+        gsonVersion = '2.8.9'
+
+        swaggerVersion = '3.0.0'
+
+        slackClientVersion = '1.9.0'
+
+        okhttpVersion = '5.0.0-alpha.2'
+
+        postgresqlVersion = '42.2.23'
+
+        mapstructVersion = '1.4.2.Final'
+        mapstructBindingVersion = '0.2.0'
+
+        lombokVersion = '1.18.20'
+
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+
 plugins {
-    id 'org.springframework.boot' version '2.4.5'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id "org.springframework.boot" version "${springBootVersion}"
+    id "io.spring.dependency-management" version "${springDependencyManagement}"
     id 'java'
 }
 
 group = 'com.demo'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 sourceCompatibility = '11'
+targetCompatibility = '11'
 
 configurations {
     compileOnly {
@@ -29,38 +66,46 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
     /* jwt https://mvnrepository.com/artifact/com.auth0/java-jwt */
-    implementation group: 'com.auth0', name: 'java-jwt', version: '3.18.1'
-
-
+    implementation group: 'com.auth0', name: 'java-jwt', version: "${javaJwtVerion}"
 
     // https://mvnrepository.com/artifact/com.google.guava/guava
-    implementation group: 'com.google.guava', name: 'guava', version: '30.1.1-jre'
-    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
-    implementation 'com.google.code.gson:gson:2.8.7'
-
+    implementation group: 'com.google.guava', name: 'guava', version: "${guavaVersion}"
+    implementation "com.googlecode.json-simple:json-simple:${jsonSimpleVersion}"
+    implementation "com.google.code.gson:gson:${gsonVersion}"
 
     /* swagger */
-    implementation "io.springfox:springfox-boot-starter:3.0.0"
-    implementation "io.springfox:springfox-swagger-ui:3.0.0"
-    implementation "io.springfox:springfox-spring-webflux:3.0.0"
+    implementation "io.springfox:springfox-boot-starter:${swaggerVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${swaggerVersion}"
+    implementation "io.springfox:springfox-spring-webflux:${swaggerVersion}"
 
     /* spring-mail */
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-freemarker'
 
     /* slack-client : https://mvnrepository.com/artifact/com.slack.api/slack-api-client */
-    implementation 'com.slack.api:slack-api-client:1.9.0'
-    implementation 'com.slack.api:slack-app-backend:1.9.0'
-    implementation 'com.slack.api:slack-api-model:1.9.0'
+    implementation "com.slack.api:slack-api-client:${slackClientVersion}"
+    implementation "com.slack.api:slack-app-backend:${slackClientVersion}"
+    implementation "com.slack.api:slack-api-model:${slackClientVersion}"
 
     /* okhttp : https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp */
-    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '5.0.0-alpha.2'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: "${okhttpVersion}"
 
     /* spring jpa */
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
+    // h2
+    compileOnly 'com.h2database:h2'
+    testImplementation 'com.h2database:h2' // 테스트 의존성 추가
+
     /* postgresql jdbc */
-    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.23'
+    implementation group: 'org.postgresql', name: 'postgresql', version: "${postgresqlVersion}"
+
+    // mapstruct
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${mapstructBindingVersion}"
+
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

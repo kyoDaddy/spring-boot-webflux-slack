@@ -1,0 +1,8 @@
+### GET Users
+GET http://localhost:8080/users
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkIjoiMTFiMGY2NjktMjBjNy00MTQ2LTlkYWEtZmIyYjQ3NDA0ODYyIiwiYXV0aG9yaXRpZXMiOlsiQURNSU4iXX0sImV4cCI6MTY0MDEwNDA5MCwiaWF0IjoxNjQwMDY4MDkwfQ.ktaUf54btRkgkwGdjvtj-GRzOm8dJ8F1dpMFEcsfyDs
+###
+
+
+
