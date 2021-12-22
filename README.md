@@ -1,7 +1,5 @@
 # spring-boot-webflux-slack
-
-spring boot webflux skeleton code 작성하여, 초기 설정을 공부
-1. 목적 : 초기 구성을 통한 타 프로젝트 동일 스펙 개발시 참고
+1. 목적 : webflux + spring-security skeleton code 작성하여, 기본 사용법 습득
 2. 참고 레퍼런스
     1. [Spring Documentation](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html)
     2. [Spring WebClient 사용법1](https://umbum.dev/1114)
@@ -20,7 +18,6 @@ spring boot webflux skeleton code 작성하여, 초기 설정을 공부
        - gradle.properties 생성 후 본인의 java home 추가
        - 예시 : org.gradle.java.home=C:\\Program Files\\ojdkbuild\\java-11-openjdk-11.0.13-1 
        ````
-
     3. after build
        > ![after-build.PNG](desc/after-build.png)
 
