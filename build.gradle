@@ -23,7 +23,7 @@ buildscript {
 
         lombokVersion = '1.18.20'
 
-        log4jVersion = '2.17.0'
+        log4jVersion = '2.17.1'
 
     }
     repositories {
