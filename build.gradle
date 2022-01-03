@@ -23,6 +23,8 @@ buildscript {
 
         lombokVersion = '1.18.20'
 
+        log4jVersion = '2.17.0'
+
     }
     repositories {
         mavenLocal()
@@ -124,4 +126,13 @@ test {
 
 bootJar {
     true
+}
+
+configurations.all {
+    // 특정 의존성 버전 Override
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        if (details.requested.group == 'org.apache.logging.log4j') {
+            details.useVersion "${log4jVersion}"
+        }
+    }
 }

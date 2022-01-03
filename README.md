@@ -1,12 +1,5 @@
 # spring-boot-webflux-slack
-1. 목적 : webflux + spring-security skeleton code 작성하여, 기본 사용법 습득
-2. 참고 레퍼런스
-    1. [Spring Documentation](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html)
-    2. [Spring WebClient 사용법1](https://umbum.dev/1114)
-    3. [Spring WebClient 사용법2](https://medium.com/@odysseymoon/spring-webclient-%EC%82%AC%EC%9A%A9%EB%B2%95-5f92d295edc0)
-    4. [Spring Security Webflux](https://sthwin.tistory.com/24)
-    5. [Spring Swagger Webflux](https://github.com/pgilad/spring-boot-webflux-swagger-starter)
-
+webflux + spring-security skeleton code 작성하여, 기본 사용법 습득하기
 
 ## 로컬 환경 설정
 * intellij
@@ -46,5 +39,13 @@
 * 외부 api 연동 개발
     * slack client
     * gmail client
+
+
+## 참고 레퍼런스
+1. [Spring Documentation](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html)
+2. [Spring WebClient 사용법1](https://umbum.dev/1114)
+3. [Spring WebClient 사용법2](https://medium.com/@odysseymoon/spring-webclient-%EC%82%AC%EC%9A%A9%EB%B2%95-5f92d295edc0)
+4. [Spring Security Webflux](https://sthwin.tistory.com/24)
+5. [Spring Swagger Webflux](https://github.com/pgilad/spring-boot-webflux-swagger-starter)
 
     
